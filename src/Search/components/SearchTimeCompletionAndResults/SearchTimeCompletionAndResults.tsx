@@ -5,7 +5,7 @@ import {useFilteredSearchResults} from "../SearchResults/hooks";
 export const SearchTimeCompletionAndResults = () => {
 
     const { searchTime } = useSearchTime();
-    const { filteredSearchResults } = useFilteredSearchResults( searchTime )
+    const { filteredSearchResults } = useFilteredSearchResults(  )
     const numberOfFilteredSearchResults = filteredSearchResults?.length
     const formattedSearchTime = searchTime ? Number(searchTime.toFixed(2)) : 0;
 

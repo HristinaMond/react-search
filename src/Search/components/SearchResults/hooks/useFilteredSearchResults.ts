@@ -1,10 +1,10 @@
 import React from "react";
-import {influentialPeople} from "../../../search-dummy-data";
+import {influentialPeople, InfluentialPerson} from "../../../search-dummy-data";
 
 export const useFilteredSearchResults = () => {
 
     const [people] = React.useState(influentialPeople); // State for all people
-    const [filteredSearchResults, setFilteredSearchResults] = React.useState([]); // State for filtered people
+    const [filteredSearchResults, setFilteredSearchResults] = React.useState<InfluentialPerson[] | []>([]); // State for filtered people
 
     // Filter function to filter by fullName
     const filterPeople = () => {

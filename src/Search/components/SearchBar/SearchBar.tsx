@@ -39,6 +39,7 @@ export const SearchBar = () => {
 
         setIsDropdownOpen(false);
 
+        //@ts-ignore
         setSearchTerm(searchInputRef.current?.value)
         //@ts-ignore
         formRef.current?.requestSubmit();

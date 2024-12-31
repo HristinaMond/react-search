@@ -1,7 +1,10 @@
 import React from "react";
 import {useSearch} from "../../../store/SearchContext.tsx";
 
-export const SearchResults = ({ searchTerm }) => {
+type SearchResultsProps = {
+    searchTerm?: string;
+}
+export const SearchResults = ({ searchTerm }: SearchResultsProps) => {
 
     const { searchResults } = useSearch();
 

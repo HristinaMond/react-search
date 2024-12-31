@@ -5,7 +5,7 @@ const SearchFilterComponent = () => {
 
     const { setSearchTerm, filterSearchResults } = useSearch(); // Access context
 
-    const handleSearchChange = (event) => {
+    const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setSearchTerm(event.target.value); // Set the search term
         filterSearchResults(); // Trigger filtering
     };
