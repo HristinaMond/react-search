@@ -12,4 +12,4 @@ This is a React application that allows users to search through a list of the mo
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/influential-it-figures-search.git
+   git clone https://github.com/HristinaMond/react-search.git
