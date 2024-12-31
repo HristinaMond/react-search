@@ -1,0 +1,23 @@
+.btn-icon {
+    display: flex;
+    padding: 5px;
+    background-color: transparent;
+    border: none;
+}
+
+.btn-icon:focus-within,
+.btn-icon:hover,
+.btn-icon:focus-visible {
+    outline: none
+}
+.btn-icon > svg {
+    width: 24px;
+}
+
+.btn-icon--primary {
+    color: #4285f4;
+}
+
+.btn-icon--secondary {
+    color: #5e5e5e;
+}

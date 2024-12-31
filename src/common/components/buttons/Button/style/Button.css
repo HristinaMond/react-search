@@ -1,0 +1,23 @@
+.btn {
+    width: fit-content;
+    height: 37px;
+    outline: none;
+    border: none;
+    background-color: transparent;
+    border-radius: 24px;
+    padding: 0;
+    line-height: 16px;
+}
+
+.btn:hover,
+.btn:focus,
+.btn:active,
+.btn:focus-within,
+.btn:focus-visible {
+    border: none;
+    outline: none;
+}
+
+.btn--primary-btn {
+    color: #70757a
+}

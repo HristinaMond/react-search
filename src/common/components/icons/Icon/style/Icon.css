@@ -1,0 +1,13 @@
+.icon {
+    display: flex;
+}
+
+.icon > svg {
+    width: 24px;
+    height: 24px;
+}
+
+.icon--small > svg {
+    width: 20px;
+    height: 20px;
+}

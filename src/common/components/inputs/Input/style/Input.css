@@ -1,0 +1,13 @@
+input {
+    box-shadow: 0 2px 8px 0 rgba(60, 64, 67, 0.25);
+    border: none;
+    padding: 14px 20px;
+    border-radius: 24px;
+    outline: none;
+    line-height: 22px;
+    font-size: 16px;
+}
+
+input:focus-visible {
+    border: none
+}
