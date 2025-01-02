@@ -127,6 +127,9 @@ export const SearchBar = () => {
                                 modifier='primary'
                                 type='submit'
                                 disabled={!searchInputRef.current}
+                                onClick={() => {
+                                    setIsDropdownOpen(false)
+                                }}
                             >
                                 <SearchIcon/>
                             </ButtonIcon>
