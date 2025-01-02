@@ -103,11 +103,9 @@ export const SearchBar = () => {
                         >
                             <ButtonIcon
                                 modifier='secondary'
+                                type='reset'
                                 disabled={!searchInputRef.current}
                                 onClick={() => {
-                                    setSearchTerm('');
-                                    //@ts-ignore
-                                    searchInputRef.current.value = '';
                                     setIsDropdownOpen(false)
                                 }}
                             >
@@ -123,6 +121,7 @@ export const SearchBar = () => {
                                 disabled={!searchInputRef.current}
                                 onClick={() => {
                                     setIsDropdownOpen(false)
+                                    setSearchTerm(searchInputRef.current?.value)
                                 }}
                             >
                                 <SearchIcon/>

@@ -5,7 +5,7 @@ import {influentialPeople} from "../Search/search-dummy-data";
 const SearchContext = createContext({
     searchResults: influentialPeople,
     filterSearchResults: () => {},
-    setSearchTerm: (arg: string) => {},
+    setSearchTerm: (arg: string | undefined) => {},
     searchTerm: ''
 });
 
