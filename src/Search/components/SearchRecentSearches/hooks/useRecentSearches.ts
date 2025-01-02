@@ -25,6 +25,7 @@ export const useRecentSearches = () => {
 
     // Remove a specific search term from both state and localStorage
     const removeSearch = (termToRemove: string) => {
+
         console.log("Removing:", termToRemove); // Debugging log
         const updatedSearches = recentSearches.filter(term => term !== termToRemove);
 

@@ -27,6 +27,9 @@ export const SearchProvider = ({ children }: SearchContextProviderProps) => {
         setSearchResults(filtered);
     };
 
+    React.useEffect(() => {
+        filterSearchResults()
+    }, [searchTerm]);
 
 
     return (

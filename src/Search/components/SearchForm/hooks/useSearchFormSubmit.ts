@@ -40,7 +40,6 @@ export const useSearchFormSubmit = () => {
             formRef.current.reset();
         }
 
-        console.log('searchTermFromForm:', searchTermFromForm);
     };
 
     return { formRef, handleSearchFormSubmit, searchTime };

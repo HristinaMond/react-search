@@ -41,15 +41,17 @@ export const SearchBar = () => {
 
         //@ts-ignore
         setSearchTerm(searchInputRef.current?.value)
+
+       // filterSearchResults(); // Trigger the filtering
+
+
         //@ts-ignore
         formRef.current?.requestSubmit();
 
     };
 
     const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        console.log('eventtarget', event.target.value);
         setSearchTerm(event.target.value); // Update the search term
-        console.log('search term ', searchTerm)
         filterSearchResults(); // Trigger the filtering
     };
 

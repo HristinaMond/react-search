@@ -10,7 +10,6 @@ export const useFilteredSearchResults = () => {
     const filterPeople = () => {
         const filtered = people.filter(person => person?.fullName.toLowerCase() === 'elon musk');
         setFilteredSearchResults(filtered); // Update filtered data
-        console.log('called filter')
     };
 
     return { filterPeople, filteredSearchResults, setFilteredSearchResults };
