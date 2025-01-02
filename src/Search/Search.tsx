@@ -14,6 +14,7 @@ export const Search = () => {
                 alignItems: 'flex-start',
                 gap: '14px',
                 maxWidth: '1024px',
+                padding: '50px'
             }}>
 
 
