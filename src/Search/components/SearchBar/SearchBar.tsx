@@ -106,7 +106,8 @@ export const SearchBar = () => {
                                 type='reset'
                                 disabled={!searchInputRef.current}
                                 onClick={() => {
-                                    setIsDropdownOpen(false)
+                                    setIsDropdownOpen(true)
+                                    searchInputRef.current?.focus()
                                 }}
                             >
                                 <CloseIcon/>
