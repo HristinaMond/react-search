@@ -13,7 +13,9 @@ export const useRecentSearches = () => {
 
     // Update recent searches in localStorage and state
     const updateRecentSearches = (newSearch: string) => {
-        const updatedSearches = [newSearch, ...recentSearches.filter((search) => search !== newSearch)];
+        const updatedSearches = newSearch != '' ?
+            [newSearch, ...recentSearches.filter((search) => search !== newSearch)] :
+            recentSearches
 
         // Limit the array to 10 items
         const limitedSearches = updatedSearches.slice(0, 10);
@@ -42,6 +44,5 @@ export const useRecentSearches = () => {
     };
 
 
-
-    return { recentSearches, updateRecentSearches, removeSearch };
+    return {recentSearches, updateRecentSearches, removeSearch};
 };
