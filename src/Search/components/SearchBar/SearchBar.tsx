@@ -168,7 +168,7 @@ export const SearchBar = () => {
 
             <SearchTimeCompletionAndResults/>
 
-            <SearchResults searchTerm={searchTerm}/>
+            {!isDropdownOpen && <SearchResults searchTerm={searchTerm}/>}
         </>
     )
 }
