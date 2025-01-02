@@ -35,10 +35,6 @@ export const useSearchFormSubmit = () => {
         // Close dropdown after search
         setIsDropdownOpen(false);
 
-        // Reset form fields if the formRef is set
-        if (formRef.current) {
-            formRef.current.reset();
-        }
 
     };
 
