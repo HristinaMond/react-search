@@ -53,6 +53,8 @@ export const SearchBar = () => {
     };
 
 
+   const showSearchResults = !isDropdownOpen && searchTerm !== '';
+
     return (
         <>
             <Form
@@ -160,7 +162,7 @@ export const SearchBar = () => {
 
             <SearchTimeCompletionAndResults/>
 
-            {!isDropdownOpen && <SearchResults searchTerm={searchTerm}/>}
+            {showSearchResults && <SearchResults searchTerm={searchTerm}/>}
         </>
     )
 }
