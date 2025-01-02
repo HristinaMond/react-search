@@ -1,5 +1,5 @@
 import React from 'react';
-import {CloseIcon, Dropdown, Form, Input, SearchIcon} from '@common/components';
+import {CloseIcon, Divider, Dropdown, Form, Input, SearchIcon} from '@common/components';
 import {ButtonIcon} from '@common/components';
 import {SearchRecentSearches} from '../SearchRecentSearches/SearchRecentSearches';
 import {Options} from "@common/components/dropdowns/Dropdown/components";
@@ -109,15 +109,7 @@ export const SearchBar = () => {
                                 <CloseIcon/>
                             </ButtonIcon>
 
-                            <div
-                                style={{
-                                    width: '1px',
-                                    height: '24px',
-                                    backgroundColor: '#dadce0',
-                                    margin: '5px 0',
-                                }}>
-
-                            </div>
+                            <Divider />
 
 
                             <ButtonIcon
