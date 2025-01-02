@@ -1,4 +1,4 @@
-import React, {useRef} from 'react';
+import React from 'react';
 import {CloseIcon, Dropdown, Form, Input, SearchIcon} from '@common/components';
 import {ButtonIcon} from '@common/components';
 import {SearchRecentSearches} from '../SearchRecentSearches/SearchRecentSearches';
@@ -41,9 +41,6 @@ export const SearchBar = () => {
 
         //@ts-ignore
         setSearchTerm(searchInputRef.current?.value)
-
-       // filterSearchResults(); // Trigger the filtering
-
 
         //@ts-ignore
         formRef.current?.requestSubmit();
