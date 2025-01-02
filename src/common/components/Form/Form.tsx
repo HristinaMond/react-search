@@ -1,24 +1,14 @@
-import React, { ReactNode, forwardRef } from "react";
+import React, {ReactNode, forwardRef, HTMLAttributes} from "react";
 
-type FormProps = {
-    children?: ReactNode;
-    onSubmit?: (e: React.FormEvent) => void;
-};
+type FormProps = HTMLAttributes<HTMLFormElement>
 
-export const Form = forwardRef<HTMLFormElement, FormProps>(({ children, onSubmit }, ref) => {
-
-    const onSubmitHandler = (e: React.FormEvent) => {
-      //  e.preventDefault();
-        if (onSubmit) {
-            onSubmit(e);  // Trigger the provided submit function
-        }
-    };
+export const Form = forwardRef<HTMLFormElement, FormProps>(({ children, onSubmit, ...props }, ref) => {
 
 
     return (
         <form
-            ref={ref} // This connects the ref to the form element
-            onSubmit={onSubmitHandler}
+            ref={ref}
+            onSubmit={onSubmit}
             style={{
                 position: 'relative',
                 width: '100%',
@@ -27,6 +17,7 @@ export const Form = forwardRef<HTMLFormElement, FormProps>(({ children, onSubmit
                 gap: '11px',
                 marginBottom: '10px',
             }}
+            {...props}
         >
             {children}
         </form>

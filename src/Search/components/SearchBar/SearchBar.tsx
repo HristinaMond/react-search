@@ -53,13 +53,16 @@ export const SearchBar = () => {
     };
 
 
-   const showSearchResults = !isDropdownOpen && searchTerm !== '';
+   const showSearchResults = !isDropdownOpen;
 
     return (
         <>
             <Form
                 ref={formRef}
-                onSubmit={handleSearchFormSubmit}
+                onSubmit={(e) => {
+                    handleSearchFormSubmit(e)
+                    searchInputRef.current?.blur();
+                }}
             >
 
                 <Dropdown
