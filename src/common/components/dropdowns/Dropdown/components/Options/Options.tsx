@@ -1,8 +1,6 @@
-import React from "react";
+import React, {HTMLAttributes} from "react";
 
-type OptionsProps = {
-    children?: React.ReactNode;
-}
+type OptionsProps = HTMLAttributes<HTMLDivElement>;
 
 export const Options = ({children}: OptionsProps) => {
     return (

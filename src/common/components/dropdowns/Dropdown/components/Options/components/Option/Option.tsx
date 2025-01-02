@@ -1,23 +1,15 @@
-import React, { forwardRef } from "react";
+import React, { HTMLAttributes } from "react";
 
-type OptionProps = {
-    children?: React.ReactNode;
-    style?: React.CSSProperties;
-    onClick?: () => void;
+type OptionProps = HTMLAttributes<HTMLDivElement>;
+
+export const Option = ({ children, style, onClick, ...props }: OptionProps) => {
+    return (
+        <div
+            style={style}
+            onClick={onClick}
+            {...props}
+        >
+            {children}
+        </div>
+    );
 };
-
-export const Option = forwardRef<HTMLDivElement, OptionProps>(
-    ({ children, style, onClick }, ref) => {
-        return (
-            <div
-                className="dropdown-item"
-                ref={ref}
-                style={style}
-                onClick={onClick}
-
-            >
-                {children}
-            </div>
-        );
-    }
-);

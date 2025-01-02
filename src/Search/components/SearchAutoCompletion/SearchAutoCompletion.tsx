@@ -1,32 +1,23 @@
-import React from "react";
-import { Option } from "@common/components/dropdowns/Dropdown/components/Options/components";
-import { SearchIcon } from "@common/components/icons";
+import React, {HTMLAttributes} from "react";
+import {Option} from "@common/components/dropdowns/Dropdown/components/Options/components";
+import {SearchIcon} from "@common/components/icons";
 import {useSearch} from "../../../store/SearchContext.tsx";
+import {InfluentialPerson} from "../../search-dummy-data";
 
-type SearchAutoCompletionProps = {
-    optionRef: React.Ref<HTMLDivElement>;
-    searchTerm: string;
-    data: any[];
-    onClick?: (arg?: any) => void;
-};
+type SearchAutoCompletionProps = HTMLAttributes<HTMLDivElement>;
 
-export const SearchAutoCompletion = ({optionRef, onClick}: SearchAutoCompletionProps) => {
+export const SearchAutoCompletion = ({ onClick }: SearchAutoCompletionProps) => {
 
-    const { searchResults } = useSearch(); // Access filtered data from context
+    const {searchResults} = useSearch();
+    const {searchTerm} = useSearch();
+    const hasSearchResults = searchResults && searchResults.length > 0;
 
     return (
         <>
-            {searchResults.length > 0 ? (
-                searchResults.map((user: any) => (
+            {hasSearchResults && searchTerm !== '' ? searchResults.map((user: InfluentialPerson) => (
                     <div
                         key={`search-results-${user.id}`}
-                        style={{
-                            display: "flex",
-                            flexDirection: "row",
-                            alignItems: "center",
-                            gap: "14px",
-                            padding: "0 14px 0 20px",
-                        }}
+                        className='dropdown-item'
                     >
                         <SearchIcon
                             className={"icon--small"}
@@ -36,20 +27,18 @@ export const SearchAutoCompletion = ({optionRef, onClick}: SearchAutoCompletionP
                         />
 
                         <Option
-                            ref={optionRef}
-                            key={`search-result-${user.id}`}
+                            option-value={user?.fullName}
                             onClick={onClick}
                             style={{
-                                width: "100%",
-                                display: "flex",
-                                justifyContent: "space-between",
+                                width: '100%',
+                                textAlign: 'left'
                             }}
                         >
                             {user?.fullName}
                         </Option>
                     </div>
-                ))
-            ) : <Option></Option>}
+                )
+            ) : null}
         </>
     );
 };

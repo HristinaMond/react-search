@@ -6,7 +6,6 @@ import {Options} from "@common/components/dropdowns/Dropdown/components";
 import {SearchTimeCompletionAndResults} from "../SearchTimeCompletionAndResults/SearchTimeCompletionAndResults";
 import {SearchAutoCompletion} from "../SearchAutoCompletion/SearchAutoCompletion";
 import {SearchResults} from '../SearchResults/SearchResults';
-import {useSearchAutoCompletion} from "../SearchAutoCompletion/hooks";
 import {useSearchTime} from "../SearchTimeCompletionAndResults/hooks";
 import {useRecentSearches} from "../SearchRecentSearches/hooks";
 import {useDropdown} from "@common/components/dropdowns/Dropdown/hooks";
@@ -19,13 +18,11 @@ export const SearchBar = () => {
 
 
     const {updateRecentSearches} = useRecentSearches();
-    const {searchAutoCompletion} = useSearchAutoCompletion(searchTerm);
     const {isDropdownOpen, setIsDropdownOpen, dropdownRef} = useDropdown();
     const {formRef, handleSearchFormSubmit} = useSearchFormSubmit();
     const {measureSearchTime} = useSearchTime();
 
     const searchInputRef = React.useRef<HTMLInputElement | null>(null);
-    const optionRef = React.useRef<HTMLInputElement | null>(null);
 
 
     const handleSearchFocus = () => setIsDropdownOpen(true);
@@ -55,6 +52,15 @@ export const SearchBar = () => {
 
    const showSearchResults = !isDropdownOpen;
 
+
+    // Focus the input on page load
+    React.useEffect(() => {
+        if (searchInputRef && typeof searchInputRef !== 'function' && searchInputRef.current && searchTerm !== '' && isDropdownOpen) {
+            searchInputRef.current.focus();
+            searchInputRef.current.style.borderRadius = '24px 24px 0 0'
+        }
+    }, [searchInputRef, searchTerm, isDropdownOpen]);
+
     return (
         <>
             <Form
@@ -83,6 +89,9 @@ export const SearchBar = () => {
                             id="searchInput"
                             className='dropdown-search'
                             onFocus={handleSearchFocus}
+                            onBlur={() => {
+                                searchInputRef.current.style.borderRadius = '24px'
+                            }}
                             onChange={handleSearchChange}
                             style={{
                                 flexGrow: 1
@@ -131,28 +140,31 @@ export const SearchBar = () => {
                     </div>
 
                     {isDropdownOpen &&
-                        <Options>
+                        <Options
+                            onClick={() => {
+                                searchInputRef.current?.focus()
+                                console.log('clicked')
+                            }}
+                        >
 
                             <SearchRecentSearches
-                                optionRef={optionRef}
                                 onClick={(e) => {
-
                                     //@ts-ignore
-                                    searchInputRef.current.value = e?.target?.innerText
+                                    searchInputRef.current.value = e?.target?.getAttribute('option-value')
                                     handleOptionSearchSubmit()
                                     setIsDropdownOpen(false)
                                 }
+
+
                                 }
                             />
 
                             <SearchAutoCompletion
-                                optionRef={optionRef}
-                                data={searchAutoCompletion}
-                                searchTerm={searchTerm}
                                 onClick={(e) => {
                                     //@ts-ignore
-                                    searchInputRef.current.value = e?.target?.innerText
+                                    searchInputRef.current.value = e?.target?.getAttribute('option-value')
                                     handleOptionSearchSubmit()
+                                    setIsDropdownOpen(false)
                                 }}
                             />
 

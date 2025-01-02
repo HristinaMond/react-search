@@ -1,9 +1,7 @@
 import './style/Dropdown.css';
-import React, { forwardRef } from "react";
+import React, {forwardRef, HTMLAttributes} from "react";
 
-type DropdownProps = {
-  children?:string | React.ReactNode;
-}
+type DropdownProps = HTMLAttributes<HTMLDivElement>
 
 export const Dropdown = forwardRef<HTMLDivElement, DropdownProps>(({ children }, ref) => {
   return (

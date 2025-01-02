@@ -1,16 +1,14 @@
-import React from "react";
+import React, {HTMLAttributes} from "react";
 import './style/Icon.css';
 
-export type IconProps = {
-    children?: React.ReactNode;
-    className?: string;
-    style?: React.CSSProperties;
-}
-export const Icon = ({ className, children , style}: IconProps) => {
+export type IconProps = HTMLAttributes<HTMLDivElement>;
+
+export const Icon = ({className, children, style, ...props}: IconProps) => {
     return (
         <div
-           className={`icon ${className || ''}`}
-           style={style}
+            className={`icon ${className || ''}`}
+            style={style}
+            {...props}
         >
             {children}
         </div>
