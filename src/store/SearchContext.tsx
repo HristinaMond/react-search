@@ -1,23 +1,23 @@
-import React, {createContext, ReactNode, useContext, useState} from 'react';
+import React from 'react';
 import {influentialPeople} from "../Search/search-dummy-data";
 
 // Create the Context with default values
-const SearchContext = createContext({
+const SearchContext = React.createContext({
     searchResults: influentialPeople,
     filterSearchResults: () => {},
-    setSearchTerm: (arg: string | undefined) => {},
+    setSearchTerm: (arg: string) => {},  // Accepts only 'string'
     searchTerm: ''
 });
 
-export const useSearch = () => useContext(SearchContext);
+export const useSearch = () => React.useContext(SearchContext);
 
 type SearchContextProviderProps = {
-    children: ReactNode;
+    children: React.ReactNode;
 }
 export const SearchProvider = ({ children }: SearchContextProviderProps) => {
 
-    const [searchResults, setSearchResults] = useState(influentialPeople);
-    const [searchTerm, setSearchTerm] = useState("");
+    const [searchResults, setSearchResults] = React.useState(influentialPeople);
+    const [searchTerm, setSearchTerm] = React.useState("");
 
 
     const filterSearchResults = () => {

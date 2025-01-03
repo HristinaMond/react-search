@@ -1,6 +1,5 @@
 import React from 'react';
-import {CloseIcon, Divider, Dropdown, Form, Input, SearchIcon} from '@common/components';
-import {ButtonIcon} from '@common/components';
+import {ButtonIcon, CloseIcon, Divider, Dropdown, Form, Input, SearchIcon} from '@common/components';
 import {SearchRecentSearches} from '../SearchRecentSearches/SearchRecentSearches';
 import {Options} from "@common/components/dropdowns/Dropdown/components";
 import {SearchTimeCompletionAndResults} from "../SearchTimeCompletionAndResults/SearchTimeCompletionAndResults";
@@ -19,13 +18,24 @@ export const SearchBar = () => {
 
     const {updateRecentSearches} = useRecentSearches();
     const {isDropdownOpen, setIsDropdownOpen, dropdownRef} = useDropdown();
-    const {formRef, handleSearchFormSubmit} = useSearchFormSubmit();
     const {measureSearchTime} = useSearchTime();
 
+    const {formRef, handleSearchFormSubmit} = useSearchFormSubmit();
     const searchInputRef = React.useRef<HTMLInputElement | null>(null);
 
 
-    const handleSearchFocus = () => setIsDropdownOpen(true);
+    const handleSearchInputFocus = () => setIsDropdownOpen(true);
+
+    const handleSearchInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setSearchTerm(event.target.value); // Update the search term
+        filterSearchResults(); // Trigger the filtering
+    };
+
+    const handleSearchInputBlur = () => {
+        if (searchInputRef.current) {
+            searchInputRef.current.style.borderRadius = '24px';
+        }
+    };
 
     const handleOptionSearchSubmit = () => {
 
@@ -36,21 +46,34 @@ export const SearchBar = () => {
 
         setIsDropdownOpen(false);
 
-        //@ts-ignore
-        setSearchTerm(searchInputRef.current?.value)
+        if(searchInputRef.current) {
+            setSearchTerm(searchInputRef.current?.value)
+        }
 
-        //@ts-ignore
         formRef.current?.requestSubmit();
 
     };
 
-    const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setSearchTerm(event.target.value); // Update the search term
-        filterSearchResults(); // Trigger the filtering
+    const handleOptionClick = (e: React.MouseEvent) => {
+        if (searchInputRef.current) {
+            const target = e.target as HTMLElement;
+            searchInputRef.current.value = target.getAttribute('option-value') || "";
+        }
+        handleOptionSearchSubmit();
+        setIsDropdownOpen(false);
     };
 
+    const handleSearchButtonClick = () => {
+        setIsDropdownOpen(false);
+        setSearchTerm(searchInputRef.current?.value || "");
+    };
 
-   const showSearchResults = !isDropdownOpen;
+    const handleResetButtonClick = () => {
+        setIsDropdownOpen(true)
+        searchInputRef.current?.focus()
+    }
+
+    const showSearchResults = !isDropdownOpen;
 
 
     // Focus the input on page load
@@ -88,11 +111,9 @@ export const SearchBar = () => {
                             type='text'
                             id="searchInput"
                             className='dropdown-search'
-                            onFocus={handleSearchFocus}
-                            onBlur={() => {
-                                searchInputRef.current.style.borderRadius = '24px'
-                            }}
-                            onChange={handleSearchChange}
+                            onFocus={handleSearchInputFocus}
+                            onBlur={handleSearchInputBlur}
+                            onChange={handleSearchInputChange}
                             style={{
                                 flexGrow: 1
                             }}
@@ -114,25 +135,19 @@ export const SearchBar = () => {
                                 modifier='secondary'
                                 type='reset'
                                 disabled={!searchInputRef.current}
-                                onClick={() => {
-                                    setIsDropdownOpen(true)
-                                    searchInputRef.current?.focus()
-                                }}
+                                onClick={handleResetButtonClick}
                             >
                                 <CloseIcon/>
                             </ButtonIcon>
 
-                            <Divider />
+                            <Divider/>
 
 
                             <ButtonIcon
                                 modifier='primary'
                                 type='submit'
                                 disabled={!searchInputRef.current}
-                                onClick={() => {
-                                    setIsDropdownOpen(false)
-                                    setSearchTerm(searchInputRef.current?.value)
-                                }}
+                                onClick={handleSearchButtonClick}
                             >
                                 <SearchIcon/>
                             </ButtonIcon>
@@ -140,33 +155,11 @@ export const SearchBar = () => {
                     </div>
 
                     {isDropdownOpen &&
-                        <Options
-                            onClick={() => {
-                                searchInputRef.current?.focus()
-                                console.log('clicked')
-                            }}
-                        >
+                        <Options>
 
-                            <SearchRecentSearches
-                                onClick={(e) => {
-                                    //@ts-ignore
-                                    searchInputRef.current.value = e?.target?.getAttribute('option-value')
-                                    handleOptionSearchSubmit()
-                                    setIsDropdownOpen(false)
-                                }
+                            <SearchRecentSearches onClick={handleOptionClick}/>
 
-
-                                }
-                            />
-
-                            <SearchAutoCompletion
-                                onClick={(e) => {
-                                    //@ts-ignore
-                                    searchInputRef.current.value = e?.target?.getAttribute('option-value')
-                                    handleOptionSearchSubmit()
-                                    setIsDropdownOpen(false)
-                                }}
-                            />
+                            <SearchAutoCompletion onClick={handleOptionClick}/>
 
                         </Options>}
 

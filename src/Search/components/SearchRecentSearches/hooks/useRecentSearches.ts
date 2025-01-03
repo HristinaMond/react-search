@@ -28,19 +28,11 @@ export const useRecentSearches = () => {
     // Remove a specific search term from both state and localStorage
     const removeSearch = (termToRemove: string) => {
 
-        console.log("Removing:", termToRemove); // Debugging log
         const updatedSearches = recentSearches.filter(term => term !== termToRemove);
 
-        // Debugging state before updating
-        console.log("State before update:", recentSearches);
-        console.log("Updated searches:", updatedSearches);
-
-        // Update the state and localStorage
         setRecentSearches(updatedSearches);
         localStorage.setItem('recentSearches', JSON.stringify(updatedSearches));
 
-        // Debugging state after updating
-        console.log("State after update:", updatedSearches);
     };
 
 
