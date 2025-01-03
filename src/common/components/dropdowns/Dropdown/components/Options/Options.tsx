@@ -4,7 +4,7 @@ type OptionsProps = HTMLAttributes<HTMLDivElement>;
 
 export const Options = ({children}: OptionsProps) => {
     return (
-        <div className="dropdown-menu" id="dropdownMenu">
+        <div className="dropdown__menu" id="dropdownMenu">
             {children}
         </div>
 

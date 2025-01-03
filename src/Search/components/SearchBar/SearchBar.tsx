@@ -109,7 +109,7 @@ export const SearchBar = () => {
                             name='search'
                             type='text'
                             id="searchInput"
-                            className='dropdown-search'
+                            className='dropdown__search-input'
                             onFocus={handleSearchInputFocus}
                             onBlur={handleSearchInputBlur}
                             onChange={handleSearchInputChange}

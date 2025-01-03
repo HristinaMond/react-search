@@ -10,9 +10,9 @@ export const Input = forwardRef<HTMLInputElement, CommonInputProps>(({ ...props 
     <CommonInput
       ref={ref}
       id="searchInput"
-      className="dropdown-search"
+      className="dropdown__search-input"
       placeholder="Search..."
-      {...props} // Spread other props
+      {...props}
     />
   );
 });

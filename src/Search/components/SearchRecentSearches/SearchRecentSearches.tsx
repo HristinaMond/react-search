@@ -20,7 +20,7 @@ export const SearchRecentSearches = ({ onClick }: SearchRecentSearchesProps) => 
             {hasRecentSearches && searchTerm !== '' ? recentSearchesReducedByFive.map((data: string, index: number) => (
                 <div
                     key={`search-recent-searches-${index}`}
-                    className='dropdown-item'
+                    className='dropdown__item'
                 >
                     <HistoryIcon
                         className={'icon--small'}

@@ -17,7 +17,7 @@ export const SearchAutoCompletion = ({ onClick }: SearchAutoCompletionProps) => 
             {hasSearchResults && searchTerm !== '' ? searchResults.map((user: InfluentialPerson) => (
                     <div
                         key={`search-results-${user.id}`}
-                        className='dropdown-item'
+                        className='dropdown__item'
                     >
                         <SearchIcon
                             className={"icon--small"}

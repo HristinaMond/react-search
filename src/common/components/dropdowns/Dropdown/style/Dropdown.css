@@ -4,7 +4,7 @@
     width: 100%;
 }
 
-.dropdown-menu {
+.dropdown__menu {
     position: absolute;
     width: 100%;
     background: white;
@@ -15,7 +15,7 @@
     border-bottom-right-radius: 0;
 }
 
-.dropdown-menu::before {
+.dropdown__menu::before {
     content: '';
     position: absolute;
     top: 0;
@@ -25,7 +25,7 @@
     background-color: #e8eaed;
 }
 
-.dropdown-item {
+.dropdown__item {
     display: grid;
     grid-template-columns: auto 1fr auto;
     cursor: pointer;
@@ -35,11 +35,11 @@
     justify-items: start;
 }
 
-.dropdown-item:first-child {
+.dropdown__item:first-child {
     margin-top: 5px;
 }
 
 
-.dropdown-item:hover {
+.dropdown__item:hover {
     background-color: #f0f0f0;
 }
