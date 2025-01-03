@@ -8,8 +8,9 @@ export const SearchTimeCompletionAndResults = () => {
     const numberOfFilteredSearchResults = searchResults?.length
 
     const formattedResults = `About ${numberOfFilteredSearchResults} result${numberOfFilteredSearchResults > 1 ? "s" : ""}`;
+    const hasSearchResults = searchResults && searchResults?.length > 0;
 
-    return  (
+    return hasSearchResults ? (
         <div
             style={{
                 display: "flex",
@@ -23,5 +24,5 @@ export const SearchTimeCompletionAndResults = () => {
             <div>{formattedResults}</div>
             <div>({searchTime} milliseconds)</div>
         </div>
-    )
+    ) : null
 };
