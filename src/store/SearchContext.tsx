@@ -26,7 +26,7 @@ export const SearchProvider = ({ children }: SearchContextProviderProps) => {
         const startTime = performance.now();
 
         const filtered = searchTerm && influentialPeople.filter(person =>
-            person.fullName.toLowerCase().includes(searchTerm.toLowerCase())
+            person.fullName.toLowerCase().startsWith(searchTerm.toLowerCase())
         );
 
         const endTime = performance.now(); // Record the end time

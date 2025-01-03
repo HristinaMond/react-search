@@ -13,11 +13,17 @@ export const SearchRecentSearches = ({ onClick }: SearchRecentSearchesProps) => 
     const {searchTerm} = useSearch()
 
     const recentSearchesReducedByFive = recentSearches.slice(0, 5);
-    const hasRecentSearches = recentSearchesReducedByFive.length > 0;
+    const hasRecentSearches = recentSearches && recentSearches?.length > 0;
+
+    const filteredByFirstLetter = searchTerm && hasRecentSearches && recentSearchesReducedByFive.filter(item =>
+        item.toLowerCase().startsWith(searchTerm.toLowerCase())
+    );
+
+    const hasFilteredByFirstLetter = filteredByFirstLetter && filteredByFirstLetter.length > 0;
 
     return (
         <>
-            {hasRecentSearches && searchTerm !== '' ? recentSearchesReducedByFive.map((data: string, index: number) => (
+            {hasFilteredByFirstLetter && searchTerm !== '' ? filteredByFirstLetter.map((data: string, index: number) => (
                 <div
                     key={`search-recent-searches-${index}`}
                     className='dropdown__item'
