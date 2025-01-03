@@ -5,7 +5,6 @@ import {Options} from "@common/components/dropdowns/Dropdown/components";
 import {SearchTimeCompletionAndResults} from "../SearchTimeCompletionAndResults/SearchTimeCompletionAndResults";
 import {SearchAutoCompletion} from "../SearchAutoCompletion/SearchAutoCompletion";
 import {SearchResults} from '../SearchResults/SearchResults';
-import {useSearchTime} from "../SearchTimeCompletionAndResults/hooks";
 import {useRecentSearches} from "../SearchRecentSearches/hooks";
 import {useDropdown} from "@common/components/dropdowns/Dropdown/hooks";
 import {useSearchFormSubmit} from "../SearchForm/hooks";
@@ -18,7 +17,6 @@ export const SearchBar = () => {
 
     const {updateRecentSearches} = useRecentSearches();
     const {isDropdownOpen, setIsDropdownOpen, dropdownRef} = useDropdown();
-    const {measureSearchTime} = useSearchTime();
 
     const {formRef, handleSearchFormSubmit} = useSearchFormSubmit();
     const searchInputRef = React.useRef<HTMLInputElement | null>(null);
@@ -44,10 +42,7 @@ export const SearchBar = () => {
 
     const handleOptionSearchSubmit = () => {
 
-        const startTime = Number(performance.now());
         updateRecentSearches(searchTerm);
-
-        measureSearchTime(startTime);
 
         setIsDropdownOpen(false);
 

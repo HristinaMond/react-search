@@ -1,17 +1,15 @@
 import React from "react";
-import {useSearchTime} from "./hooks";
-import {useFilteredSearchResults} from "../SearchResults/hooks";
+import {useSearch} from "../../../store/SearchContext.tsx";
 
 export const SearchTimeCompletionAndResults = () => {
 
-    const { searchTime } = useSearchTime();
-    const { filteredSearchResults } = useFilteredSearchResults(  )
-    const numberOfFilteredSearchResults = filteredSearchResults?.length
-    const formattedSearchTime = searchTime ? Number(searchTime.toFixed(2)) : 0;
+    const {searchTime} = useSearch();
+    const { searchResults } = useSearch( )
+    const numberOfFilteredSearchResults = searchResults?.length
 
     const formattedResults = `About ${numberOfFilteredSearchResults} result${numberOfFilteredSearchResults > 1 ? "s" : ""}`;
 
-    return formattedSearchTime ? (
+    return  (
         <div
             style={{
                 display: "flex",
@@ -23,7 +21,7 @@ export const SearchTimeCompletionAndResults = () => {
             }}
         >
             <div>{formattedResults}</div>
-            <div>({formattedSearchTime} seconds)</div>
+            <div>({searchTime} milliseconds)</div>
         </div>
-    ) : null;
+    )
 };
