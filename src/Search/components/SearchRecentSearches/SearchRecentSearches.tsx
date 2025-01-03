@@ -20,10 +20,14 @@ export const SearchRecentSearches = ({ onClick }: SearchRecentSearchesProps) => 
     );
 
     const hasFilteredByFirstLetter = filteredByFirstLetter && filteredByFirstLetter.length > 0;
+    const showFilteredByFirstLetter = searchTerm !== '' && hasFilteredByFirstLetter
+
+    // show recent searches filtered by letter or all recent searches
+    const formattedRecentSearches = showFilteredByFirstLetter ? filteredByFirstLetter : recentSearches
 
     return (
         <>
-            {hasFilteredByFirstLetter && searchTerm !== '' ? filteredByFirstLetter.map((data: string, index: number) => (
+            {hasRecentSearches  ? formattedRecentSearches.map((data: string, index: number) => (
                 <div
                     key={`search-recent-searches-${index}`}
                     className='dropdown__item'
