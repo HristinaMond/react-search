@@ -1,5 +1,5 @@
 import React from 'react';
-import {influentialPeople} from "../Search/search-dummy-data";
+import {influentialPeople, InfluentialPerson} from "../Search/search-dummy-data";
 
 // Create the Context with default values
 const SearchContext = React.createContext({
@@ -17,7 +17,7 @@ type SearchContextProviderProps = {
 }
 export const SearchProvider = ({ children }: SearchContextProviderProps) => {
 
-    const [searchResults, setSearchResults] = React.useState(influentialPeople);
+    const [searchResults, setSearchResults] = React.useState<InfluentialPerson[]>(influentialPeople);
     const [searchTerm, setSearchTerm] = React.useState("");
     const [searchTime, setSearchTime] = React.useState<number>(0); // State to hold search time
 
@@ -33,7 +33,7 @@ export const SearchProvider = ({ children }: SearchContextProviderProps) => {
         const timeInSeconds = (endTime - startTime);
         setSearchTime(timeInSeconds);
 
-        setSearchResults(filtered);
+        setSearchResults(filtered ? filtered : []);
     };
 
     React.useEffect(() => {
