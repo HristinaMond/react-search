@@ -29,6 +29,11 @@ export const SearchBar = () => {
     const handleSearchInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setSearchTerm(event.target.value); // Update the search term
         filterSearchResults(); // Trigger the filtering
+        if (event.target.value) {
+            setShowResetButton(true)
+        } else {
+            setShowResetButton(false);
+        }
     };
 
     const handleSearchInputBlur = () => {
@@ -46,7 +51,7 @@ export const SearchBar = () => {
 
         setIsDropdownOpen(false);
 
-        if(searchInputRef.current) {
+        if (searchInputRef.current) {
             setSearchTerm(searchInputRef.current?.value)
         }
 
@@ -73,16 +78,15 @@ export const SearchBar = () => {
         searchInputRef.current?.focus()
     }
 
-    const showSearchResults = !isDropdownOpen;
-
+    const showSearchResults = !isDropdownOpen && searchTerm !== ''
+    const [showResetButton, setShowResetButton] = React.useState(false);
 
     // Focus the input on page load
     React.useEffect(() => {
-        if (searchInputRef && typeof searchInputRef !== 'function' && searchInputRef.current && searchTerm !== '' && isDropdownOpen) {
+        if (searchInputRef && typeof searchInputRef !== 'function' && searchInputRef.current && searchTerm === '') {
             searchInputRef.current.focus();
-            searchInputRef.current.style.borderRadius = '24px 24px 0 0'
         }
-    }, [searchInputRef, searchTerm, isDropdownOpen]);
+    }, [searchInputRef, searchTerm]);
 
     return (
         <>
@@ -131,14 +135,17 @@ export const SearchBar = () => {
                                 zIndex: 9999,
                             }}
                         >
-                            <ButtonIcon
-                                modifier='secondary'
-                                type='reset'
-                                disabled={!searchInputRef.current}
-                                onClick={handleResetButtonClick}
-                            >
-                                <CloseIcon/>
-                            </ButtonIcon>
+                            {showResetButton && (
+                                <ButtonIcon
+                                    modifier='secondary'
+                                    type='reset'
+                                    disabled={!searchInputRef.current}
+                                    onClick={handleResetButtonClick}
+                                >
+                                    <CloseIcon/>
+                                </ButtonIcon>
+                            )
+                            }
 
                             <Divider/>
 
